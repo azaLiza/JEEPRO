@@ -74,7 +74,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `psd` varchar(50) COLLATE utf8_bin NOT NULL,
-  `mail` varchar(100) COLLATE utf8_bin NOT NULL,
+  `name` varchar(100) COLLATE utf8_bin NOT NULL,
   `pwd` varchar(100) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
