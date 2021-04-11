@@ -1,0 +1,81 @@
+/* Stylesheet for the home page */
+
+/* Set a style for the submit/register button */
+.btn {
+    background: #956d37;
+    /*background-color: #57c8a9;*/
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+
+}
+
+.btn:hover {
+    opacity:3;
+    background-color: #ff8000;
+}
+
+.conn {
+    width: 80%;
+    height: 0;
+    /*background-color: #fce08d;*/
+    top:0;
+    margin-bottom: 120%;
+    margin-left: 15%;
+    right: 0;
+
+    margin: auto;
+    display: inline-block;
+}
+
+.insc {
+    width: 80%;
+    height: 0;
+    /*background-color: #fce08d;*/
+    /*position: right;*/
+    margin-top:10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    display: inline-block;
+}
+
+.bloc {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(214,146,19,0.5);
+    transition: 0.3s;
+    margin-top: 8%;
+    margin-bottom: 4%;
+    margin-left: 40%;
+    margin-right: 5%;
+    background: rgba(225,192,131,0.90);
+    position: center;
+}
+
+/* On mouse-over, add a deeper shadow */
+.bloc:hover {
+    box-shadow: 0 10px 16px 0 rgba(214,146,19,0.5);
+}
+
+/* Add some padding inside the card container */
+.txtconn {
+    padding: 2px 16px;
+}
+.txtinsc {
+    padding: 2px 16px;
+}
+.txtfriend {
+    padding: 2px 16px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
