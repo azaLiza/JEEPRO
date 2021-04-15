@@ -1,6 +1,7 @@
 import databaseconnector.DBConnection;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
@@ -39,6 +40,10 @@ public class Login implements Serializable {
         query.setString(1, login1);
         ResultSet result = query.executeQuery();
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        return Base64.getEncoder().encodeToString(digest.digest(password1.getBytes(StandardCharsets.UTF_8))).equals(result.getString(1));
+        if (Base64.getEncoder().encodeToString(digest.digest(password1.getBytes(StandardCharsets.UTF_8))).equals(result.getString(1))) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", login1);
+            return true;
+        }
+        return false;
     }
 }
