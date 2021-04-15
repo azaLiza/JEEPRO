@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<link rel="stylesheet" href="css/addPost.css"/>
+
+<h:head>
+    <title>Today's Adventure</title>
+</h:head>
+
+<h:body>
+    <h4>Add Post</h4>
+
+    <!-- FORM TO ADD POST -->
+    <div class="insc">
+        <div class="bloc">
+            <div class="txtinsc">
+                <h3>Create your account.</h3>
+                <br/>
+                <h:form>
+                    <h:inputText value="#{addPost.title}" id="title" p:placeholder="Title"/>
+                    <br/>
+                    <h:inputText value="#{addPost.desc}" id="desc" p:placeholder="Description"/>
+                    <br/>
+                    <h:inputText value="#{addPost.post}" id="post" p:placeholder="Your Post"/>
+                    <br/>
+                    <h:commandButton action="#{addPost.dispatch()}" class="btnAddPost"
+                                     value="ADD POST"></h:commandButton>
+                    <br/>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <h2>Footer</h2>
+    </div>
+
+</h:body>
+</html>
