@@ -18,25 +18,26 @@ public class DBConnection {
 	static final String username="root";
 	static final String password="";
 
-	private static Connection connection;
+	private static Connection connection = null;
 
 	//connect only one time
 	public static Connection getInstance() {
 		//surround with try and catch
 		try {
-			Class.forName(jdbc_driver);
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(db_url, username, password);
 			System.out.println("Connected");
-		}
-		catch (ClassNotFoundException e){
-			//Class.forName failed
-			e.printStackTrace();
 		} catch (SQLException e) {
-			//DriverManager.getConnection failed
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("VendorError: " + e.getErrorCode());
+			e.printStackTrace();
+		} //DriverManager.getConnection failed
+		catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return connection;
 
+		return connection;
 	}
 	
 	//a function to close connection
