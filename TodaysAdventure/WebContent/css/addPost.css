@@ -1,5 +1,8 @@
 /* Stylesheet for the addPost page */
 
+body {
+    background-image: url("./../res/bck.jpg");
+}
 /* Set a style for the submit/register button */
 .btn {
     background: #956d37;

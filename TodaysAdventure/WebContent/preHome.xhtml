@@ -10,19 +10,14 @@
 	</h:head>
 	
 	<h:body>
-	<style>
-		body{
-			background-image: url("res/bck.jpg");
-		}
-	</style>
-		<p><h1>Welcome to Today's Adventure, a blog where you share, motivate and connect with new people from all over the world.</h1></p>
+		<h1>Welcome to Today's Adventure, a blog where you share, motivate and connect with new people from all over the world.</h1>
 		<br/>
 		<h4>Let's get started!</h4>
 		<br/>
-		
+
 		<!-- FORM TO SIGN IN -->
 		<div class="conn">
-			
+
 			<div class="bloc">
 				<div class="txtconn">
 					<h3>Do you have an account?</h3>
@@ -30,9 +25,10 @@
 					<h5>Welcome back.</h5>
 					<br/>
 					<h:form>
-						<h:inputText p:placeholder="Pseudoname"/><br/>
-						<h:inputText p:placeholder="Password"/><br/>
-						<h:commandButton class="btn" value="SIGN IN"></h:commandButton><br/>
+						<h:inputText value="#{login.login1}" p:placeholder="Pseudoname"/><br/>
+						<h:inputSecret value="#{login.password1}" p:placeholder="Password"/><br/>
+						<h:commandButton action="#{login.dispatch()}" class="btn"
+										 value="SIGN IN"></h:commandButton><br/>
 					</h:form>
 				</div>
 			</div>
@@ -42,14 +38,15 @@
 		<div class="insc">
 			<div class="bloc">
 				<div class="txtinsc">
-				<h3>Create your account.</h3>
-				<br/>
+					<h3>Create your account.</h3>
+					<br/>
 					<h:form>
-						<h:inputText p:placeholder="Name"/><br/>
-						<h:inputText p:placeholder="Pseudoname"/><br/>
-						<h:inputText p:placeholder="Password"/><br/>
-						<h:inputText p:placeholder="Confirm your password"/><br/>
-						<h:commandButton class="btn" value="SIGN UP"></h:commandButton><br/>
+						<h:inputText value="#{signUp.name}" p:placeholder="Name"/><br/>
+						<h:inputText value="#{signUp.login1}" p:placeholder="Pseudoname"/><br/>
+						<h:inputSecret value="#{signUp.password1}" p:placeholder="Password"/><br/>
+						<h:inputSecret value="#{signUp.confirmPassword}" p:placeholder="Confirm your password"/><br/>
+						<h:commandButton action="#{signUp.dispatch()}" class="btn"
+										 value="SIGN UP"></h:commandButton><br/>
 					</h:form>
 				</div>
 			</div>
