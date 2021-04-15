@@ -19,17 +19,14 @@
                 <h3>Create your account.</h3>
                 <br/>
                 <h:form>
-                    <h:inputText id="title" p:placeholder="Title"/>
+                    <h:inputText value="#{addPost.title}" id="title" p:placeholder="Title"/>
                     <br/>
-                    <h:inputText id="desc" p:placeholder="Description"/>
+                    <h:inputText value="#{addPost.desc}" id="desc" p:placeholder="Description"/>
                     <br/>
-                    <!--
-                    <h:inputImage p:placeholder="Your Image"/>
+                    <h:inputText value="#{addPost.post}" id="post" p:placeholder="Your Post"/>
                     <br/>
-                    -->
-                    <h:inputText id="post" p:placeholder="Your Post"/>
-                    <br/>
-                    <h:commandButton class="btnAddPost" value="ADD POST"></h:commandButton>
+                    <h:commandButton action="#{addPost.dispatch()}" class="btnAddPost"
+                                     value="ADD POST"></h:commandButton>
                     <br/>
                 </h:form>
             </div>

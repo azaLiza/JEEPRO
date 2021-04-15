@@ -3,9 +3,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 
 
-/**
- * A managed bean that handle a little authentication.
- */
 @Named
 @RequestScoped
 public class Login implements Serializable {
