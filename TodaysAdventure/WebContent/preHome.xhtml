@@ -25,8 +25,8 @@
 					<h5>Welcome back.</h5>
 					<br/>
 					<h:form>
-						<h:inputText value="#{login.login1}" p:placeholder="Pseudoname"/><br/>
-						<h:inputSecret value="#{login.password1}" p:placeholder="Password"/><br/>
+						<h:inputText required="true" value="#{login.login1}" p:placeholder="Pseudoname"/><br/>
+						<h:inputSecret required="true" value="#{login.password1}" p:placeholder="Password"/><br/>
 						<h:commandButton action="#{login.dispatch()}" class="btn"
 										 value="SIGN IN"></h:commandButton><br/>
 					</h:form>
@@ -41,10 +41,11 @@
 					<h3>Create your account.</h3>
 					<br/>
 					<h:form>
-						<h:inputText value="#{signUp.name}" p:placeholder="Name"/><br/>
-						<h:inputText value="#{signUp.login1}" p:placeholder="Pseudoname"/><br/>
-						<h:inputSecret value="#{signUp.password1}" p:placeholder="Password"/><br/>
-						<h:inputSecret value="#{signUp.confirmPassword}" p:placeholder="Confirm your password"/><br/>
+						<h:inputText required="true" value="#{signUp.name}" p:placeholder="Name"/><br/>
+						<h:inputText required="true" value="#{signUp.login1}" p:placeholder="Pseudoname"/><br/>
+						<h:inputSecret required="true" value="#{signUp.password1}" p:placeholder="Password"/><br/>
+						<h:inputSecret required="true" value="#{signUp.confirmPassword}"
+									   p:placeholder="Confirm your password"/><br/>
 						<h:commandButton action="#{signUp.dispatch()}" class="btn"
 										 value="SIGN UP"></h:commandButton><br/>
 					</h:form>

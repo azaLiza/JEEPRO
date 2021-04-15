@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 @Named
 @RequestScoped
-public class AddPost implements Serializable {
+public class Post implements Serializable {
     private String title;
     private String desc;
     private String post;
@@ -33,7 +33,11 @@ public class AddPost implements Serializable {
         this.post = post;
     }
 
-    public String dispatch() {
+    public String addPost() {
+        return "";
+    }
+
+    public String getAPost() {
         return "";
     }
 }

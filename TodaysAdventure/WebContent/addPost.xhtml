@@ -19,13 +19,13 @@
                 <h3>Create your account.</h3>
                 <br/>
                 <h:form>
-                    <h:inputText value="#{addPost.title}" id="title" p:placeholder="Title"/>
+                    <h:inputText value="#{post.title}" id="title" p:placeholder="Title"/>
                     <br/>
-                    <h:inputText value="#{addPost.desc}" id="desc" p:placeholder="Description"/>
+                    <h:inputText value="#{post.desc}" id="desc" p:placeholder="Description"/>
                     <br/>
-                    <h:inputText value="#{addPost.post}" id="post" p:placeholder="Your Post"/>
+                    <h:inputText value="#{post.post}" id="post" p:placeholder="Your Post"/>
                     <br/>
-                    <h:commandButton action="#{addPost.dispatch()}" class="btnAddPost"
+                    <h:commandButton action="#{post.addPost()}" class="btnAddPost"
                                      value="ADD POST"></h:commandButton>
                     <br/>
                 </h:form>
