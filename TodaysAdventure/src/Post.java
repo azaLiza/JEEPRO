@@ -59,6 +59,7 @@ public class Post implements Serializable {
         while (result.next()) {
             myPosts.add(new Post(result.getString(1)));
         }
+        currentPost = 0;
     }
 
     public String addPost() throws SQLException {
