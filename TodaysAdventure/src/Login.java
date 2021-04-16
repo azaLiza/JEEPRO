@@ -35,11 +35,13 @@ public class Login implements Serializable {
         this.login1 = login1;
     }
 
+    public boolean dispatch() throws SQLException, NoSuchAlgorithmException {
     public String dispatch() throws SQLException, NoSuchAlgorithmException {
         PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT pwd from users where psd like ?;");
         query.setString(1, login1);
         ResultSet result = query.executeQuery();
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        return Base64.getEncoder().encodeToString(digest.digest(password1.getBytes(StandardCharsets.UTF_8))).equals(result.getString(1));
         if (result.next()) {
             if (Base64.getEncoder().encodeToString(digest.digest(password1.getBytes(StandardCharsets.UTF_8))).equals(result.getString(1))) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", login1);
