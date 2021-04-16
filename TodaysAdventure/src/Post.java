@@ -1,3 +1,4 @@
+
 import databaseconnector.DBConnection;
 
 import javax.enterprise.context.RequestScoped;
@@ -8,9 +9,15 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+import java.io.Serializable;
+
+
 @Named
 @RequestScoped
 public class Post implements Serializable {
+
     static int currentPost;
     static List<Post> myPosts;
     //private String title;
@@ -27,6 +34,12 @@ public class Post implements Serializable {
     }
 
     /*public String getTitle() {
+
+    private String title;
+    private String desc;
+    private String post;
+
+    public String getTitle() {
         return title;
     }
 
@@ -40,7 +53,10 @@ public class Post implements Serializable {
 
     public void setDesc(String desc) {
         this.desc = desc;
+
     }*/
+
+    }
 
     public String getPost() {
         return post;
@@ -49,6 +65,7 @@ public class Post implements Serializable {
     public void setPost(String post) {
         this.post = post;
     }
+
 
     public static void getPosts() throws SQLException {
         String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
@@ -75,4 +92,12 @@ public class Post implements Serializable {
     }
 
 
+
+    public String addPost() {
+        return "";
+    }
+
+    public String getAPost() {
+        return "";
+    }
 }
