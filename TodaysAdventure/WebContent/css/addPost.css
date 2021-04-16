@@ -78,3 +78,13 @@ footer {
     justify-content: center;
     padding: 5px;
 }
+
+form {
+    width: 95%;
+}
+
+textarea {
+    min-width: 500px;
+    width: 95%;
+    min-height: 300px;
+}

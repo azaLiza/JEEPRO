@@ -67,15 +67,19 @@ public class Post implements Serializable {
     }
 
     public String addPost() throws SQLException {
-        Statement stm = DBConnection.getInstance().createStatement();
-        int user_id = stm.executeQuery("SELECT id_user from users where id_user like " + (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") + ";").getInt(1);
-        PreparedStatement query = DBConnection.getInstance().prepareStatement("INSERT INTO posts (`id_user`, `content_post`, `date_post`) VALUES (?,?,?);");
-        //query.setString(1, title);
-        //query.setString(2, desc);
-        query.setInt(1, user_id);
-        query.setString(2, post);
-        query.setDate(3, Date.valueOf(LocalDate.now()));
-        return query.execute() ? "home.xhtml" : "addPost.xhtml";
+        PreparedStatement stm = DBConnection.getInstance().prepareStatement("SELECT id_user from users where psd like ?;");
+        stm.setString(1, (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user"));
+        ResultSet resultSet= stm.executeQuery();
+        if (resultSet.next()) {
+            PreparedStatement query = DBConnection.getInstance().prepareStatement("INSERT INTO posts (`id_user`, `content_post`, `date_post`) VALUES (?,?,?);");
+            //query.setString(1, title);
+            //query.setString(2, desc);
+            query.setInt(1, resultSet.getInt(1));
+            query.setString(2, post);
+            query.setDate(3, Date.valueOf(LocalDate.now()));
+            query.execute();
+            return "home.xhtml";
+        }
+        return "preHome.xhtml";
     }
-
 }
