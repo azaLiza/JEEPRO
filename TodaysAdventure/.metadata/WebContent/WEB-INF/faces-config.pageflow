@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16186145742530" configfile="/TodaysAdventure/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="preHome.xhtml" id="pf16186147284834" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf16186147284835" path="/preHome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" id="pf16186147284836" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16186147284835" path="/home.xhtml"/>
+  <links id="pf16186147284835" target="pf16186147284836" source="pf16186147284834" outcome="home.xhtml"/>
+</pageflow:Pageflow>
