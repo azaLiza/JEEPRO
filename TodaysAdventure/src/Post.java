@@ -1,4 +1,3 @@
-
 import databaseconnector.DBConnection;
 
 import javax.enterprise.context.RequestScoped;
@@ -8,10 +7,6 @@ import java.io.Serializable;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
-
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-import java.io.Serializable;
 
 
 @Named
@@ -34,12 +29,6 @@ public class Post implements Serializable {
     }
 
     /*public String getTitle() {
-
-    private String title;
-    private String desc;
-    private String post;
-
-    public String getTitle() {
         return title;
     }
 
@@ -55,8 +44,6 @@ public class Post implements Serializable {
         this.desc = desc;
 
     }*/
-
-    }
 
     public String getPost() {
         return post;
@@ -91,13 +78,4 @@ public class Post implements Serializable {
         return query.execute() ? "home.xhtml" : "addPost.xhtml";
     }
 
-
-
-    public String addPost() {
-        return "";
-    }
-
-    public String getAPost() {
-        return "";
-    }
 }
