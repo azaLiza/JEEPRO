@@ -33,19 +33,28 @@ public class Post implements Serializable {
     public void setPost(String post) {
         this.post = post;
     }
-    
+
     public ArrayList<Post> getPosts() throws SQLException {
-        String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT content_post from posts INNER JOIN users u on posts.id_user = u.id_user where u.name like ? ORDER BY date_post;");
-        query.setString(1, username);
-        ResultSet result = query.executeQuery();
         if (myPosts == null) {
             myPosts = new ArrayList<>();
         } else {
             myPosts.clear();
         }
-        while (result.next()) {
-            myPosts.add(new Post(result.getString(1)));
+
+        String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        PreparedStatement queryGetID = DBConnection.getInstance().prepareStatement("SELECT id_user from users where name like ?;");
+        queryGetID.setString(1, username);
+        ResultSet rs = queryGetID.executeQuery();
+        if (rs.next()) {
+            int myID = rs.getInt(1);
+            PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT content_post from posts where id_user = ? or id_user in (SELECT idf2 from friends where idf1 = ?) UNION (SELECT idf1 from friends where idf2 = ?) ;");
+            query.setInt(1, myID);
+            query.setInt(2, myID);
+            query.setInt(3, myID);
+            ResultSet result = query.executeQuery();
+            while (result.next()) {
+                myPosts.add(new Post(result.getString(1)));
+            }
         }
         return myPosts;
     }
