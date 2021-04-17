@@ -3,10 +3,14 @@ import databaseconnector.DBConnection;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import connexion.Session;
+
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,6 +47,21 @@ public class Login implements Serializable {
         if (result.next()) {
             if (Base64.getEncoder().encodeToString(digest.digest(password1.getBytes(StandardCharsets.UTF_8))).equals(result.getString(1))) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", login1);
+                /*
+                 * RECUPERATION DE LA SESSION
+                 * */
+                /*******************************************************************/
+                String rec="Select id_user from users where psd=\""+login1+"\";";
+                Connection con=DBConnection.getInstance();
+                PreparedStatement p;
+                try {
+                	p=con.prepareStatement(rec);
+                	p.setString(1,login1);
+                	ResultSet resu=p.executeQuery();
+                	int idSession=resu.getInt("id_user");
+                	Session s=new Session(idSession, login1);
+                }catch(SQLException e){e.printStackTrace();}
+                
                 return "home.xhtml";
             }
         }
