@@ -1,0 +1,60 @@
+@charset "ISO-8859-1";
+body {
+    background-image: url("./../res/bck.jpg");
+}
+
+
+.btn {
+    /*background: url("./../res/liste.png");*/
+    background-color: #ff9933;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  
+}
+
+.btn:hover {
+  opacity:3;
+  background-color: #ff8000;
+}
+
+/* affichage friends */
+.uf {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(214,146,19,0.5);
+  transition: 0.4s;
+  margin-top: 4%;
+  margin-bottom: 1%;
+  margin-left: 15%;
+  margin-right: 5%;
+  background: rgba(225,192,131,0.70);
+  position: center;
+}
+
+/* On mouse-over, add a deeper shadow */
+.uf:hover {
+  box-shadow: 0 10px 16px 0 rgba(214,146,19,0.5);
+}
+
+/* affichage to add friends */
+
+.nf {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(214,146,19,0.5);
+  transition: 0.3s;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  margin-left: 15%;
+  margin-right: 5%;
+  background: rgba(225,192,131,0.90);
+  position: center;
+}
+
+/* On mouse-over, add a deeper shadow */
+.nf:hover {
+  box-shadow: 0 10px 16px 0 rgba(214,146,19,0.5);
+}
