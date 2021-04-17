@@ -45,5 +45,9 @@ public class Session extends UseUser {
 		this.pseudo=null;
 		System.out.println("Logged out!");
 	}
+	
+	public Session getSess() {
+		return this;
+	}
 
 }
