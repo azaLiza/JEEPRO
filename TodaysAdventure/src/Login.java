@@ -51,7 +51,7 @@ public class Login implements Serializable {
                  * RECUPERATION DE LA SESSION
                  * */
                 /*******************************************************************/
-                String rec="Select id_user from users where psd=\""+login1+"\";";
+                String rec="Select id_user from users where psd='"+login1+"'";
                 Connection con=DBConnection.getInstance();
                 PreparedStatement p;
                 try {
@@ -59,7 +59,8 @@ public class Login implements Serializable {
                 	p.setString(1,login1);
                 	ResultSet resu=p.executeQuery();
                 	int idSession=resu.getInt("id_user");
-                	Session s=new Session(idSession, login1);
+                	Session s=new Session();
+                	s.setIdUser(idSession);
                 }catch(SQLException e){e.printStackTrace();}
                 
                 return "home.xhtml";

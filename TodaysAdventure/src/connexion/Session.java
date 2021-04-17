@@ -1,6 +1,11 @@
 package connexion;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import DAO.UseUser;
+import databaseconnector.DBConnection;
 /**
  * 
  * @author Liza
@@ -11,17 +16,15 @@ import DAO.UseUser;
 
 public class Session extends UseUser {
 	private int idUser;
-	private String pseudo;
 	//the password is not needed
 	
 	public Session() {
 		super();
 	}
 
-	public Session(int idUser, String pseudo) {
+	public Session(int idUser) {
 		super();
 		this.idUser = idUser;
-		this.pseudo = pseudo;
 	}
 
 	public int getIdUser() {
@@ -29,20 +32,37 @@ public class Session extends UseUser {
 	}
 
 	public void setIdUser(int idUser) {
+		//injection dans la bdd
+		String query="insert into session (id-session) values (?)";
+		Connection con=DBConnection.getInstance();
+		PreparedStatement prepared=null;
+		try {
+			prepared=con.prepareStatement(query);
+			prepared.setInt(1, idUser);
+			prepared.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.idUser = idUser;
 	}
 
-	public String getPseudo() {
-		return pseudo;
-	}
 
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
-	
 	public void deconnexion() {
 		this.idUser=0;
-		this.pseudo=null;
+		//delete from la bdd
+				String query="delete * from session";
+				Connection con=DBConnection.getInstance();
+				PreparedStatement prepared=null;
+				try {
+					prepared=con.prepareStatement(query);
+					prepared.executeUpdate();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 		System.out.println("Logged out!");
 	}
 	
