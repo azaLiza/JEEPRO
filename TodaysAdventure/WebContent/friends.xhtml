@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <link rel="stylesheet" href="css/friends.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -19,6 +21,17 @@
 		<div class="uf">
 			<h3>Your friends</h3>
 			<!-- inserer liste des amis -->
+			<ul>
+				
+				<ui:repeat value="#{RelationBean.myfriends}" var="user">
+					<li>
+						<h:link value="#{user.pseudo}" outcome="user">
+                				<f:param name="id" value="#{book.id}" />
+                				<h:commandButton class="btn" value="DELETE fRIEND"></h:commandButton>
+           			    </h:link>
+					</li>
+				</ui:repeat>
+			</ul>
 			
 		</div>
 		
