@@ -11,7 +11,7 @@
 
 <h:body>
 
-    <!-- FORM TO ADD POST -->
+    <!-- FORM TO SHOW COMMON FRIENDS -->
     <div class="insc">
         <div class="bloc">
             <c:if test="#{empty param['id']}">
@@ -22,6 +22,7 @@
             </c:if>
             <div class="txtinsc">
                 <ul>
+                    <!-- Show friends -->
                     <c:if test="#{empty param['id']}">
                         <c:forEach var="x" items="#{user.getFriends()}">
                             <li>
@@ -33,6 +34,8 @@
                             </li>
                         </c:forEach>
                     </c:if>
+                    <!-- Show common friends -->
+                    <!-- expect id parameter pass by GET -->
                     <c:if test="#{not empty param['id']}">
                         <c:forEach var="x" items="#{user.getCommonFriends(param['id'])}">
                             <li>
