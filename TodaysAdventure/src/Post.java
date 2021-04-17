@@ -17,35 +17,14 @@ import java.util.ArrayList;
 public class Post implements Serializable {
 
     private ArrayList<Post> myPosts = null;
-    //private String title;
-    //private String desc;
     private String post;
 
     Post() {
     }
 
-    Post(/*String title, String desc, */ String post) {
-        /*this.title = title;
-        this.desc = desc;*/
+    Post(String post) {
         this.post = post;
     }
-
-    /*public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-
-    }*/
 
     public String getPost() {
         return post;
@@ -54,8 +33,7 @@ public class Post implements Serializable {
     public void setPost(String post) {
         this.post = post;
     }
-
-
+    
     public ArrayList<Post> getPosts() throws SQLException {
         String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
         PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT content_post from posts INNER JOIN users u on posts.id_user = u.id_user where u.name like ? ORDER BY date_post;");
@@ -78,8 +56,6 @@ public class Post implements Serializable {
         ResultSet resultSet= stm.executeQuery();
         if (resultSet.next()) {
             PreparedStatement query = DBConnection.getInstance().prepareStatement("INSERT INTO posts (`id_user`, `content_post`, `date_post`) VALUES (?,?,?);");
-            //query.setString(1, title);
-            //query.setString(2, desc);
             query.setInt(1, resultSet.getInt(1));
             query.setString(2, post);
             query.setDate(3, Date.valueOf(LocalDate.now()));
