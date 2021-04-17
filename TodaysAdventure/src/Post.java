@@ -4,17 +4,19 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 
 
 @Named
 @RequestScoped
 public class Post implements Serializable {
 
-    static int currentPost;
-    static List<Post> myPosts;
+    private ArrayList<Post> myPosts = null;
     //private String title;
     //private String desc;
     private String post;
@@ -54,16 +56,20 @@ public class Post implements Serializable {
     }
 
 
-    public static void getPosts() throws SQLException {
+    public ArrayList<Post> getPosts() throws SQLException {
         String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
         PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT content_post from posts INNER JOIN users u on posts.id_user = u.id_user where u.name like ? ORDER BY date_post;");
         query.setString(1, username);
         ResultSet result = query.executeQuery();
-        myPosts.clear();
+        if (myPosts == null) {
+            myPosts = new ArrayList<>();
+        } else {
+            myPosts.clear();
+        }
         while (result.next()) {
             myPosts.add(new Post(result.getString(1)));
         }
-        currentPost = 0;
+        return myPosts;
     }
 
     public String addPost() throws SQLException {
