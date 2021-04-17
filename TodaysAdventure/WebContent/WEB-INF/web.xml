@@ -19,14 +19,17 @@
   </servlet>
   
   <!-- ********************************************************************************* -->
-  <!-- Mapping the servlet -->
-  <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>/faces/*</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-  				<servlet-name>Faces Servlet</servlet-name>
-  				<url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>
+    <!-- Mapping the servlet -->
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
 </web-app>

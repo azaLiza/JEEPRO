@@ -46,6 +46,6 @@ public class Login implements Serializable {
                 return "home.xhtml";
             }
         }
-        return "preHome.xhtml";
+        return "index.xhtml";
     }
 }
