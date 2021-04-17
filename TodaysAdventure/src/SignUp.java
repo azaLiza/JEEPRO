@@ -61,9 +61,9 @@ public class SignUp implements Serializable {
             query.setString(3, Base64.getEncoder().encodeToString(digest.digest(password1.getBytes(StandardCharsets.UTF_8))));
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", login1);
             query.execute();
-            return query.getUpdateCount() > 0 ? "home.xhtml" : "preHome.xhtml";
+            return query.getUpdateCount() > 0 ? "home.xhtml" : "index.xhtml";
         }
-        return "preHome.xhtml";
+        return "index.xhtml";
 
     }
 

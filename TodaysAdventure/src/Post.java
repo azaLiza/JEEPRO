@@ -47,7 +47,7 @@ public class Post implements Serializable {
         ResultSet rs = queryGetID.executeQuery();
         if (rs.next()) {
             int myID = rs.getInt(1);
-            PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT content_post from posts where id_user = ? or id_user in (SELECT idf2 from friends where idf1 = ?) UNION (SELECT idf1 from friends where idf2 = ?) ;");
+            PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT content_post from posts where id_user = ? or id_user in (SELECT idf2 from friends where idf1 = ? UNION SELECT idf1 from friends where idf2 = ?) ORDER BY date_post;");
             query.setInt(1, myID);
             query.setInt(2, myID);
             query.setInt(3, myID);
@@ -71,6 +71,6 @@ public class Post implements Serializable {
             query.execute();
             return "home.xhtml";
         }
-        return "preHome.xhtml";
+        return "index.xhtml";
     }
 }
