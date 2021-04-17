@@ -3,14 +3,14 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core"
 >
 
-<link rel="stylesheet" href="css/home.css"/>
+<link rel="stylesheet" href="css/common.css"/>
 
 <h:head>
     <title>Today's Adventure</title>
 </h:head>
 
 <h:body>
-    <p>Welcome to Today's Adventure, a blog where you share, motivate and connect with new people from all over the world.</p>
+    <H1>Welcome to Today's Adventure, a blog where you share, motivate and connect with new people from all over the world.</H1>
     <br/>
     <h4>Let's get started!</h4>
     <br/>
@@ -21,10 +21,10 @@
         <div class="rightcolumn">
             <div class="bloc">
                 <h2>About Me</h2>
-                <div class="txtaboutme">About me</div>
-                <p>Some text about me</p>
+                <div class="txtaboutme">Some text about me</div>
             </div>
             <div class="bloc">
+                <h2>Post</h2>
                 <ul>
                     <c:forEach var="x" items="#{post.getPosts()}">
                         <li>
@@ -35,12 +35,12 @@
                     </c:forEach>
                 </ul>
                 <!-- FORM TO ADD POST -->
-                <h4>Let's get started to Post!</h4>
-                <a href="posts.xhtml">Add Post</a>
+                <h3>Let's get started to Post!</h3>
+                <a class="btn" href="posts.xhtml">Add Post</a>
             </div>
 
             <div class="bloc">
-                <h3>Friends</h3>
+                <h2>Friends</h2>
                 <ul>
                     <c:forEach var="x" items="#{user.getFriends()}">
                         <li>
@@ -52,15 +52,12 @@
                         </li>
                     </c:forEach>
                 </ul>
-                <h4>Let's get started to have friends!</h4>
-                <a href="addFriend.xhtml">Add friends</a>
+                <h3>Let's get started to have friends!</h3>
+                <a href="addFriend.xhtml" class="btn">Add friends</a>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-    </div>
 
 </h:body>
 

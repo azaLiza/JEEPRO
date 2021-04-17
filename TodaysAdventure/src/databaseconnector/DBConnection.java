@@ -5,18 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * 
+ *
  * @author Liza
  *This class initializes a connection to our database
  */
 public class DBConnection {
 	//driver's class name
-	static final String jdbc_driver="com.mysql.jdbc.Driver";
+	static final String jdbc_driver = "com.mysql.jdbc.Driver";
 	//CONNECTION URL
-	static final String db_url="jdbc:mysql://localhost:3306/adv";
+	static final String db_url = "jdbc:mysql://localhost:3306/adv";
 	//ATTRIBUTES
-	static final String username="root";
-	static final String password="";
+	static final String username = "root";
+	static final String password = "root";
 
 	private static Connection connection = null;
 
