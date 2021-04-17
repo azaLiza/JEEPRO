@@ -3,18 +3,17 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<link rel="stylesheet" href="css/addPost.css"/>
+<link rel="stylesheet" href="css/common.css"/>
 
 <h:head>
     <title>Today's Adventure</title>
 </h:head>
 
 <h:body>
-    <h4>Add Friend</h4>
-
     <!-- FORM TO ADD POST -->
     <div class="insc">
         <div class="bloc">
+            <h2>Add Friend</h2>
             <div class="txtinsc">
                 <ul>
                     <c:forEach var="x" items="#{user.getPotentialFriends()}">
@@ -35,9 +34,6 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-    </div>
 
 </h:body>
 </html>
