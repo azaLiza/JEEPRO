@@ -14,19 +14,9 @@
     <br/>
     <h4>Let's get started!</h4>
     <br/>
-
     <!-- FORM OF THE PAGE -->
     <div class="row">
         <div class="leftcolumn">
-            <ul>
-                <c:forEach var="x" items="#{post.getPosts()}">
-                    <li>
-                        <div class="card">
-                            <h:outputLabel value="${x.post}"/>
-                        </div>
-                    </li>
-                </c:forEach>
-            </ul>
         </div>
         <div class="rightcolumn">
             <div class="bloc">
@@ -35,30 +25,41 @@
                 <p>Some text about me</p>
             </div>
             <div class="bloc">
-                <h3>Popular Post</h3>
-                <div class="fakeimg">Image</div><br/>
-                <div class="fakeimg">Image</div><br/>
-                <div class="fakeimg">Image</div>
+                <ul>
+                    <c:forEach var="x" items="#{post.getPosts()}">
+                        <li>
+                            <div class="card">
+                                <h:outputLabel value="${x.post}"/>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+                <!-- FORM TO ADD POST -->
+                <h4>Let's get started to Post!</h4>
+                <a href="posts.xhtml">Add Post</a>
             </div>
+
             <div class="bloc">
                 <h3>Friends</h3>
-                <div class="txtfriend">Friend</div>
-                <div class="txtfriend">Friend</div>
-                <div class="txtfriend">Friend</div>
+                <ul>
+                    <c:forEach var="x" items="#{user.getFriends()}">
+                        <li>
+                            <div class="card">
+                                <h:outputLabel class="name" value="${x.name}"/>
+                                <h:outputLabel class="login" value="${x.login}"/>
+                                <h:link outcome="friends.xhtml?id=${x.id}" class="btn" value="View common friends"/>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+                <h4>Let's get started to have friends!</h4>
+                <a href="addFriend.xhtml">Add friends</a>
             </div>
         </div>
     </div>
 
-    <!-- FORM TO ADD POST -->
-    <h4>Let's get started to Post!</h4>
-    <a href="posts.xhtml">Add Post</a>
-
-    <h4>Let's get started to have friends!</h4>
-    <a href="addFriend.xhtml">Add friends</a>
-
     <!-- FOOTER -->
     <div class="footer">
-        <h2>Footer</h2>
     </div>
 
 </h:body>

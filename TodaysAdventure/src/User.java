@@ -62,6 +62,22 @@ public class User implements Serializable {
         return users;
     }
 
+    public HashSet<User> getCommonFriends(int id) throws SQLException {
+        HashSet<User> friends = getFriends();
+        HashSet<User> users = new HashSet<>();
+        PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT id_user,psd,name from users where id_user in (SELECT idf2 from friends where idf1 = ? UNION SELECT idf1 from friends where idf2 = ?);");
+        query.setInt(1, id);
+        query.setInt(2, id);
+        ResultSet resultSet = query.executeQuery();
+        while (resultSet.next()) {
+            users.add(new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), false));
+        }
+        String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        users.removeIf(u -> (u.login.equals(username)));
+        users.removeAll(friends);
+        return users;
+    }
+
     public HashSet<User> getPotentialFriends() throws SQLException {
         HashSet<User> potentialFriends = getUsers();
         String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
