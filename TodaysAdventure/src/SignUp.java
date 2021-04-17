@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.util.Base64;
 
 
+/**
+ * Classe permettant de s'inscrire sur le site
+ */
 @Named
 @RequestScoped
 public class SignUp implements Serializable {
@@ -52,6 +55,13 @@ public class SignUp implements Serializable {
         this.login1 = login1;
     }
 
+    /**
+     * Méthode pour vérifier la validité des données et les insérer dans la BDD
+     *
+     * @return redirection vers les pages xhtml
+     * @throws SQLException
+     * @throws NoSuchAlgorithmException
+     */
     public String dispatch() throws SQLException, NoSuchAlgorithmException {
         if (confirmPassword.equals(password1)) {
             PreparedStatement query = DBConnection.getInstance().prepareStatement("INSERT INTO users (`psd`, `name`, `pwd`) VALUES (?,?,?);");

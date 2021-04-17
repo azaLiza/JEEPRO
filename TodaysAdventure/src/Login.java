@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 
-
+/**
+ * Classe permettant de se connecter sur le site
+ */
 @Named
 @RequestScoped
 public class Login implements Serializable {
@@ -34,6 +36,14 @@ public class Login implements Serializable {
     public void setLogin1(String login1) {
         this.login1 = login1;
     }
+
+    /**
+     * Méthode pour comparer les données entrées dans la BDD avec le login et désencoder le mot de passe
+     *
+     * @return redirection vers les pages xhtml
+     * @throws SQLException
+     * @throws NoSuchAlgorithmException
+     */
 
     public String dispatch() throws SQLException, NoSuchAlgorithmException {
         PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT pwd from users where psd like ?;");

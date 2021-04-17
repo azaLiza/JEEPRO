@@ -10,6 +10,10 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Objects;
 
+
+/**
+ * Classe permettant de gérer les utilisateurs ainsi que leurs relations
+ */
 @Named
 @RequestScoped
 public class User implements Serializable {
@@ -33,6 +37,12 @@ public class User implements Serializable {
         this(id, name, login, false);
     }
 
+    /**
+     * Méthode pour recupérer les Users depuis la BDD
+     *
+     * @return HashSet contenant les users
+     * @throws SQLException
+     */
     public HashSet<User> getUsers() throws SQLException {
         HashSet<User> users = new HashSet<>();
         PreparedStatement query = DBConnection.getInstance().prepareStatement("SELECT id_user, psd, name from users where psd != ? ;");
@@ -44,6 +54,12 @@ public class User implements Serializable {
         return users;
     }
 
+    /**
+     * Méthode pour recupérer les amis de l'utilisateur depuis la BDD
+     *
+     * @return HashSet contenant les amis de l'utilisateur
+     * @throws SQLException
+     */
     public HashSet<User> getFriends() throws SQLException {
         HashSet<User> users = new HashSet<>();
         PreparedStatement queryGetID = DBConnection.getInstance().prepareStatement("SELECT id_user from users where name like ?;");
@@ -62,6 +78,13 @@ public class User implements Serializable {
         return users;
     }
 
+    /**
+     * Méthode pour recupérer les amis en commun entre un ami selectionné et l'utilisateur depuis la BDD
+     *
+     * @param id
+     * @return HashSet contenant les amis en commun
+     * @throws SQLException
+     */
     public HashSet<User> getCommonFriends(int id) throws SQLException {
         HashSet<User> friends = getFriends();
         HashSet<User> users = new HashSet<>();
@@ -78,6 +101,12 @@ public class User implements Serializable {
         return users;
     }
 
+    /**
+     * Méthode pour recupérer les utilisateurs qui ne sont pas ami avec l'utilisateur depuis la BDD
+     *
+     * @return HashSet contenant les potentiel amis
+     * @throws SQLException
+     */
     public HashSet<User> getPotentialFriends() throws SQLException {
         HashSet<User> potentialFriends = getUsers();
         String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
@@ -88,6 +117,12 @@ public class User implements Serializable {
         return potentialFriends;
     }
 
+    /**
+     * Méthode pour ajouter les utilisateurs qui ne sont pas ami avec l'utilisateur dans la BDD
+     *
+     * @return redirection vers les pages xhtml
+     * @throws SQLException
+     */
     public String addFriend() throws SQLException {
         PreparedStatement queryGetID = DBConnection.getInstance().prepareStatement("SELECT id_user from users where name like ?;");
         queryGetID.setString(1, (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user"));

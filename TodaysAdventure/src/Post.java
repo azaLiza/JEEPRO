@@ -12,6 +12,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
+/**
+ * Classe permettant de gérer les posts
+ */
 @Named
 @RequestScoped
 public class Post implements Serializable {
@@ -34,6 +37,12 @@ public class Post implements Serializable {
         this.post = post;
     }
 
+    /**
+     * Méthode pour afficher des posts depuis la BDD
+     *
+     * @return ArrayList contenant les posts de l'utilisateur
+     * @throws SQLException
+     */
     public ArrayList<Post> getPosts() throws SQLException {
         if (myPosts == null) {
             myPosts = new ArrayList<>();
@@ -59,10 +68,16 @@ public class Post implements Serializable {
         return myPosts;
     }
 
+    /**
+     * Méthode pour ajouter des posts depuis la BDD
+     *
+     * @return redirection vers les pages xhtml
+     * @throws SQLException
+     */
     public String addPost() throws SQLException {
         PreparedStatement stm = DBConnection.getInstance().prepareStatement("SELECT id_user from users where psd like ?;");
         stm.setString(1, (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user"));
-        ResultSet resultSet= stm.executeQuery();
+        ResultSet resultSet = stm.executeQuery();
         if (resultSet.next()) {
             PreparedStatement query = DBConnection.getInstance().prepareStatement("INSERT INTO posts (`id_user`, `content_post`, `date_post`) VALUES (?,?,?);");
             query.setInt(1, resultSet.getInt(1));
