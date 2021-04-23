@@ -72,7 +72,7 @@ public class User implements Serializable {
             query.setInt(2, myID);
             ResultSet resultSet = query.executeQuery();
             while (resultSet.next()) {
-                users.add(new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), false));
+                users.add(new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), true));
             }
         }
         return users;
@@ -93,11 +93,11 @@ public class User implements Serializable {
         query.setInt(2, id);
         ResultSet resultSet = query.executeQuery();
         while (resultSet.next()) {
-            users.add(new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), false));
+            users.add(new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), true));
         }
         String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
         users.removeIf(u -> (u.login.equals(username)));
-        users.removeAll(friends);
+        users.retainAll(friends);
         return users;
     }
 
